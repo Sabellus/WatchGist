@@ -8,25 +8,15 @@
 
 import UIKit
 
-struct Gist {
-    var description: String
-    var createdAt: String
-    var updatedAt: String
-    var htmlUrl: String
-}
 class GistViewController: UIViewController {
 
-    private let gists = [
-        Gist(description: "First", createdAt: "1", updatedAt: "11", htmlUrl: "https//1"),
-        Gist(description: "Secound", createdAt: "2", updatedAt: "22", htmlUrl: "https//2"),
-        Gist(description: "Third", createdAt: "3", updatedAt: "33", htmlUrl: "https//3")
-    ]
-    
     private var tableView: UITableView =  {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
+    
+    var presenter: GistViewPresenterProtocol!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,23 +41,50 @@ class GistViewController: UIViewController {
             NSLayoutConstraint(item: tableView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1.0, constant: 0),
         ])
      }
+    func dateFormat(_ dateString: String) -> String {
+        let dateFormatter = DateFormatter()
+        let tempLocale = dateFormatter.locale // save locale temporarily
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        let date = dateFormatter.date(from: dateString )!
+        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm:ss" ; //"dd-MM-yyyy HH:mm:ss"
+        dateFormatter.locale = tempLocale // reset the locale --> but no need here
+        let dateString = dateFormatter.string(from: date)
+        return dateString
+    }
  }
+extension GistViewController: GistViewProtocol {
+    func success() {
+        tableView.reloadData()
+    }
+    
+    func failure(error: Error) {
+        print(error.localizedDescription)
+    }
+    
+    
+}
 extension GistViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return gists.count
+        return presenter.gists?.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! GistCell
-       cell.descriptionLabel.text = gists[indexPath.row].description
-       cell.timeLabel.text = gists[indexPath.row].createdAt
+       cell.descriptionLabel.text = presenter.gists?[indexPath.row].description
+        
+        cell.timeLabel.text = dateFormat((presenter.gists?[indexPath.row].created_at)!)
         return cell
     }
 }
 extension GistViewController: UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Num: \(indexPath.row)")
+        let gist = presenter.gists?[indexPath.row]
+        let detailGistViewController = Builder.createDetailModule(gist: gist)
+        self.navigationController?.pushViewController(detailGistViewController, animated: true)
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+           return CGFloat(80)
     }
 }

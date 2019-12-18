@@ -13,6 +13,12 @@
 		4B69823323A8E0F400E6841A /* WatchGistTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B69823223A8E0F400E6841A /* WatchGistTests.swift */; };
 		4B69823E23A8E29000E6841A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B69823D23A8E29000E6841A /* LaunchScreen.storyboard */; };
 		4B69824023A8EC3500E6841A /* GistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B69823F23A8EC3500E6841A /* GistCell.swift */; };
+		4B69824323AA523000E6841A /* Gist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B69824223AA523000E6841A /* Gist.swift */; };
+		4B69824523AA54B200E6841A /* GistPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B69824423AA54B200E6841A /* GistPresenter.swift */; };
+		4B69824823AA558C00E6841A /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B69824723AA558C00E6841A /* NetworkService.swift */; };
+		4B69824A23AA64EE00E6841A /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B69824923AA64EE00E6841A /* Builder.swift */; };
+		4B69824D23AAB5B400E6841A /* DetailGistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B69824C23AAB5B400E6841A /* DetailGistViewController.swift */; };
+		4B69824F23AAB5C700E6841A /* DetailGistPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B69824E23AAB5C700E6841A /* DetailGistPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +42,12 @@
 		4B69823423A8E0F400E6841A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B69823D23A8E29000E6841A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4B69823F23A8EC3500E6841A /* GistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistCell.swift; sourceTree = "<group>"; };
+		4B69824223AA523000E6841A /* Gist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gist.swift; sourceTree = "<group>"; };
+		4B69824423AA54B200E6841A /* GistPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistPresenter.swift; sourceTree = "<group>"; };
+		4B69824723AA558C00E6841A /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		4B69824923AA64EE00E6841A /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
+		4B69824C23AAB5B400E6841A /* DetailGistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailGistViewController.swift; sourceTree = "<group>"; };
+		4B69824E23AAB5C700E6841A /* DetailGistPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailGistPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,12 +89,14 @@
 		4B69821A23A8E0F100E6841A /* WatchGist */ = {
 			isa = PBXGroup;
 			children = (
+				4B69824623AA556500E6841A /* Services */,
 				4B69821B23A8E0F100E6841A /* AppDelegate.swift */,
-				4B69821F23A8E0F100E6841A /* GistViewController.swift */,
-				4B69823F23A8EC3500E6841A /* GistCell.swift */,
+				4B69824123AA516B00E6841A /* GistModule */,
+				4B69824B23AAB58600E6841A /* DetailGistModule */,
 				4B69822423A8E0F400E6841A /* Assets.xcassets */,
 				4B69822923A8E0F400E6841A /* Info.plist */,
 				4B69823D23A8E29000E6841A /* LaunchScreen.storyboard */,
+				4B69824923AA64EE00E6841A /* Builder.swift */,
 			);
 			path = WatchGist;
 			sourceTree = "<group>";
@@ -94,6 +108,34 @@
 				4B69823423A8E0F400E6841A /* Info.plist */,
 			);
 			path = WatchGistTests;
+			sourceTree = "<group>";
+		};
+		4B69824123AA516B00E6841A /* GistModule */ = {
+			isa = PBXGroup;
+			children = (
+				4B69821F23A8E0F100E6841A /* GistViewController.swift */,
+				4B69823F23A8EC3500E6841A /* GistCell.swift */,
+				4B69824223AA523000E6841A /* Gist.swift */,
+				4B69824423AA54B200E6841A /* GistPresenter.swift */,
+			);
+			path = GistModule;
+			sourceTree = "<group>";
+		};
+		4B69824623AA556500E6841A /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				4B69824723AA558C00E6841A /* NetworkService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		4B69824B23AAB58600E6841A /* DetailGistModule */ = {
+			isa = PBXGroup;
+			children = (
+				4B69824C23AAB5B400E6841A /* DetailGistViewController.swift */,
+				4B69824E23AAB5C700E6841A /* DetailGistPresenter.swift */,
+			);
+			path = DetailGistModule;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,7 +239,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B69822023A8E0F100E6841A /* GistViewController.swift in Sources */,
+				4B69824523AA54B200E6841A /* GistPresenter.swift in Sources */,
+				4B69824D23AAB5B400E6841A /* DetailGistViewController.swift in Sources */,
+				4B69824A23AA64EE00E6841A /* Builder.swift in Sources */,
 				4B69821C23A8E0F100E6841A /* AppDelegate.swift in Sources */,
+				4B69824323AA523000E6841A /* Gist.swift in Sources */,
+				4B69824823AA558C00E6841A /* NetworkService.swift in Sources */,
+				4B69824F23AAB5C700E6841A /* DetailGistPresenter.swift in Sources */,
 				4B69824023A8EC3500E6841A /* GistCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
