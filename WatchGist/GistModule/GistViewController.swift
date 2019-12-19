@@ -18,6 +18,8 @@ class GistViewController: UIViewController {
     
     var presenter: GistViewPresenterProtocol!
     
+    var fetchingMore = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Gists"
@@ -41,28 +43,16 @@ class GistViewController: UIViewController {
             NSLayoutConstraint(item: tableView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1.0, constant: 0),
         ])
      }
-    func dateFormat(_ dateString: String) -> String {
-        let dateFormatter = DateFormatter()
-        let tempLocale = dateFormatter.locale // save locale temporarily
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        let date = dateFormatter.date(from: dateString )!
-        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm:ss" ; //"dd-MM-yyyy HH:mm:ss"
-        dateFormatter.locale = tempLocale // reset the locale --> but no need here
-        let dateString = dateFormatter.string(from: date)
-        return dateString
-    }
  }
 extension GistViewController: GistViewProtocol {
     func success() {
-        tableView.reloadData()
+         DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
+            self.tableView.reloadData()
+         })
     }
-    
     func failure(error: Error) {
         print(error.localizedDescription)
     }
-    
-    
 }
 extension GistViewController: UITableViewDataSource {
     
@@ -72,19 +62,30 @@ extension GistViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! GistCell
-       cell.descriptionLabel.text = presenter.gists?[indexPath.row].description
-        
-        cell.timeLabel.text = dateFormat((presenter.gists?[indexPath.row].created_at)!)
+        cell.descriptionText = presenter.gists?[indexPath.row].description
+        cell.timeCreatedText = presenter.gists?[indexPath.row].created_at?.getFormattedDate()
         return cell
     }
 }
 extension GistViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let gist = presenter.gists?[indexPath.row]
-        let detailGistViewController = Builder.createDetailModule(gist: gist)
-        self.navigationController?.pushViewController(detailGistViewController, animated: true)
+        presenter.tapOnTheGist(gist: gist)
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-           return CGFloat(80)
+        return CGFloat(80)
+    }
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let lastSectionIndex = tableView.numberOfSections - 1
+        let lastRowIndex = tableView.numberOfRows(inSection: lastSectionIndex) - 1
+        if indexPath.section ==  lastSectionIndex && indexPath.row == lastRowIndex {
+            let spinner = UIActivityIndicatorView(style: .gray)
+            spinner.startAnimating()
+            presenter.getGists()
+            spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: CGFloat(44))
+
+            self.tableView.tableFooterView = spinner
+            self.tableView.tableFooterView?.isHidden = false
+        }
     }
 }

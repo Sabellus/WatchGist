@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B612C4623ABA4C50011EA18 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B612C4523ABA4C50011EA18 /* Router.swift */; };
 		4B69821C23A8E0F100E6841A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B69821B23A8E0F100E6841A /* AppDelegate.swift */; };
 		4B69822023A8E0F100E6841A /* GistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B69821F23A8E0F100E6841A /* GistViewController.swift */; };
 		4B69822523A8E0F400E6841A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B69822423A8E0F400E6841A /* Assets.xcassets */; };
@@ -19,6 +20,7 @@
 		4B69824A23AA64EE00E6841A /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B69824923AA64EE00E6841A /* Builder.swift */; };
 		4B69824D23AAB5B400E6841A /* DetailGistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B69824C23AAB5B400E6841A /* DetailGistViewController.swift */; };
 		4B69824F23AAB5C700E6841A /* DetailGistPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B69824E23AAB5C700E6841A /* DetailGistPresenter.swift */; };
+		4B779B7823AB960900DB7753 /* Extension+DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B779B7723AB960900DB7753 /* Extension+DateFormatter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4B612C4523ABA4C50011EA18 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		4B69821823A8E0F100E6841A /* WatchGist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchGist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B69821B23A8E0F100E6841A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B69821F23A8E0F100E6841A /* GistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistViewController.swift; sourceTree = "<group>"; };
@@ -48,6 +51,7 @@
 		4B69824923AA64EE00E6841A /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
 		4B69824C23AAB5B400E6841A /* DetailGistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailGistViewController.swift; sourceTree = "<group>"; };
 		4B69824E23AAB5C700E6841A /* DetailGistPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailGistPresenter.swift; sourceTree = "<group>"; };
+		4B779B7723AB960900DB7753 /* Extension+DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+DateFormatter.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +72,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B612C4423ABA4AC0011EA18 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				4B612C4523ABA4C50011EA18 /* Router.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
 		4B69820F23A8E0F100E6841A = {
 			isa = PBXGroup;
 			children = (
@@ -89,14 +101,16 @@
 		4B69821A23A8E0F100E6841A /* WatchGist */ = {
 			isa = PBXGroup;
 			children = (
+				4B612C4423ABA4AC0011EA18 /* Router */,
+				4B779B7623AB95E100DB7753 /* Helpers */,
 				4B69824623AA556500E6841A /* Services */,
-				4B69821B23A8E0F100E6841A /* AppDelegate.swift */,
 				4B69824123AA516B00E6841A /* GistModule */,
 				4B69824B23AAB58600E6841A /* DetailGistModule */,
+				4B69824923AA64EE00E6841A /* Builder.swift */,
 				4B69822423A8E0F400E6841A /* Assets.xcassets */,
 				4B69822923A8E0F400E6841A /* Info.plist */,
 				4B69823D23A8E29000E6841A /* LaunchScreen.storyboard */,
-				4B69824923AA64EE00E6841A /* Builder.swift */,
+				4B69821B23A8E0F100E6841A /* AppDelegate.swift */,
 			);
 			path = WatchGist;
 			sourceTree = "<group>";
@@ -136,6 +150,14 @@
 				4B69824E23AAB5C700E6841A /* DetailGistPresenter.swift */,
 			);
 			path = DetailGistModule;
+			sourceTree = "<group>";
+		};
+		4B779B7623AB95E100DB7753 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				4B779B7723AB960900DB7753 /* Extension+DateFormatter.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -238,12 +260,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B612C4623ABA4C50011EA18 /* Router.swift in Sources */,
 				4B69822023A8E0F100E6841A /* GistViewController.swift in Sources */,
 				4B69824523AA54B200E6841A /* GistPresenter.swift in Sources */,
 				4B69824D23AAB5B400E6841A /* DetailGistViewController.swift in Sources */,
 				4B69824A23AA64EE00E6841A /* Builder.swift in Sources */,
 				4B69821C23A8E0F100E6841A /* AppDelegate.swift in Sources */,
 				4B69824323AA523000E6841A /* Gist.swift in Sources */,
+				4B779B7823AB960900DB7753 /* Extension+DateFormatter.swift in Sources */,
 				4B69824823AA558C00E6841A /* NetworkService.swift in Sources */,
 				4B69824F23AAB5C700E6841A /* DetailGistPresenter.swift in Sources */,
 				4B69824023A8EC3500E6841A /* GistCell.swift in Sources */,
@@ -395,7 +419,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.veprev.gist.WatchGist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.veprev.gist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -414,7 +438,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.veprev.gist.WatchGist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.veprev.gist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

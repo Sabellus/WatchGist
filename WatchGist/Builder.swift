@@ -9,28 +9,26 @@
 import UIKit
 
 protocol BuilderProtocol {
-    static func createGistModule() -> UIViewController
-    static func createDetailModule(gist: Gist?) -> UIViewController
+    func createGistModule(router: RouterProtocol) -> UIViewController
+    func createDetailModule(gist: Gist?, router: RouterProtocol) -> UIViewController
 }
 
 class Builder: BuilderProtocol {
-    static func createDetailModule(gist: Gist?) -> UIViewController {
+    func createDetailModule(gist: Gist?, router: RouterProtocol) -> UIViewController {
         let view = DetailGistViewController()
         let networkService = NetworkService()
-        let presenter = DetailGistPresenter(view: view, networkSerive: networkService, gist: gist)
+        let presenter = DetailGistPresenter(view: view, networkSerive: networkService, router: router, gist: gist)
         
         view.presenter = presenter
         return view
     }
     
-    static func createGistModule() -> UIViewController {
+    func createGistModule(router: RouterProtocol) -> UIViewController {
         let view = GistViewController()
         let networkService = NetworkService()
-        let presenter = GistPresenter(view: view, networkService: networkService)
+        let presenter = GistPresenter(view: view, networkService: networkService, router: router)
         
         view.presenter = presenter
         return view
     }
-    
-    
 }

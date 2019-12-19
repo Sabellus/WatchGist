@@ -14,8 +14,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow()
-        let mainVC = Builder.createGistModule()
-        let navBar = UINavigationController(rootViewController: mainVC)
+        let navBar = UINavigationController()
+        let builder = Builder()
+        let router = Router(navigationController: navBar, builder: builder)
+        router.initialViewController()
         window?.rootViewController = navBar
         window?.makeKeyAndVisible()
         return true

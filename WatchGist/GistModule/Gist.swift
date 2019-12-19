@@ -6,7 +6,6 @@
 //  Copyright © 2019 Савелий Вепрев. All rights reserved.
 //
 
-import Foundation
 struct Gist: Decodable {
     var description: String?
     var created_at: String?

@@ -72,8 +72,8 @@ class DetailGistViewController: UIViewController {
 extension DetailGistViewController: DetailGistViewProtocol {
     func setGist(gist: Gist?) {
         descriptionLabel.text = gist?.description
-        timeCreatedLabel.text = gist?.created_at
-        timeUpdatedLabel.text = gist?.updated_at
+        timeCreatedLabel.text = gist?.created_at?.getFormattedDate()
+        timeUpdatedLabel.text = gist?.updated_at?.getFormattedDate()
         htmlUrlLabel.text = gist?.html_url
     }    
 }

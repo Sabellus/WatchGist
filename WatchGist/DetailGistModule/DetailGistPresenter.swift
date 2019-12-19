@@ -12,19 +12,21 @@ protocol DetailGistViewProtocol: class {
 }
 
 protocol DetailGistPresenterProtocol: class {
-    init(view: DetailGistViewProtocol, networkSerive: NetworkServiceProtocol, gist: Gist?)
+    init(view: DetailGistViewProtocol, networkSerive: NetworkServiceProtocol, router: RouterProtocol, gist: Gist?)
     func setGist()
 }
 
 class DetailGistPresenter: DetailGistPresenterProtocol {
     weak var view: DetailGistViewProtocol?
     let networkService: NetworkServiceProtocol!
+    var router: RouterProtocol?
     var gist: Gist?
     
-    required init(view: DetailGistViewProtocol, networkSerive: NetworkServiceProtocol, gist: Gist?) {
+    required init(view: DetailGistViewProtocol, networkSerive: NetworkServiceProtocol, router: RouterProtocol, gist: Gist?) {
         self.view = view
         self.networkService = networkSerive
         self.gist = gist
+        self.router = router
     }
     
     func setGist() {
