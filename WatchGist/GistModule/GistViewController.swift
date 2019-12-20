@@ -63,7 +63,7 @@ extension GistViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! GistCell
         cell.descriptionText = presenter.gists?[indexPath.row].description
-        cell.timeCreatedText = presenter.gists?[indexPath.row].created_at?.getFormattedDate()
+        cell.timeCreatedText = "Created " + (presenter.gists?[indexPath.row].created_at?.getFormattedDate() ?? "")
         return cell
     }
 }
